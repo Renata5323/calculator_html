@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор</title>
+    <script>
+        function sendRequest(value) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:8000", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementsByName('vvod')[0].value = xhr.responseText;
+                }
+            };
+            xhr.send("value=" + encodeURIComponent(value));
+        }
+
+        function buttonClick(value) {
+            var inputField = document.getElementsByName('vvod')[0];
+            if (value === "C") {
+                inputField.value = "0";
+            } else if (value === "=") {
+                sendRequest(inputField.value);
+            } else {
+                if (inputField.value === "0") {
+                    inputField.value = value;
+                } else {
+                    inputField.value += value;
+                }
+            }
+        }
+    </script>
+</head>
+<body style="background-color:#f5c276">
+<div style="text-align:center"><input style="width:500px;height:50px;font-size:150%;background-color:#9e6b1e;color:#fa9d11" type="text" name="vvod" value="0"></div>
+<div style="position: absolute;left:541px;top:75px"><input style="width:100px;height:50px;background-color:#9e6b1e;color:#fa9d11;font-size:150%" type="button" onclick="buttonClick('//')" value="//" ></div>
+<div style="position: absolute;left:741px;top:75px"><input style="width:100px;height:50px;background-color:#9e6b1e;color:#fa9d11;font-size:150%" type="button" onclick="buttonClick('*')" value="*"></div>
+<div style="position: absolute;left:950px;top:75px"><input style="width:100px;height:50px;background-color:#9e6b1e;color:#fa9d11;font-size:150%" type="button" onclick="buttonClick('C')" value="C"></div>
+<div style="position: absolute;left:541px;top:150px"><input style="width:100px;height:50px;background-color:#9e6b1e;color:#fa9d11;font-size:150%" type="button" onclick="buttonClick('7')" value="7" ></div>
+<div style="position: absolute;left:741px;top:150px"><input style="width:100px;height:50px;background-color:#9e6b1e;color:#fa9d11;font-size:150%" type="button" onclick="buttonClick('8')" value="8"></div>
+<div style="position: absolute;left:950px;top:150px"><input style="width:100px;height:50px;background-color:#9e6b1e;color:#fa9d11;font-size:150%" type="button" onclick="buttonClick('9')" value="9"></div>
+<div style="position: absolute;left:541px;top:225px"><input style="width:100px;height:50px;background-color:#9e6b1e;color:#fa9d11;font-size:150%" type="button" onclick="buttonClick('4')" value="4"></div>
+<div style="position: absolute;left:741px;top:225px"><input style="width:100px;height:50px;background-color:#9e6b1e;color:#fa9d11;font-size:150%" type="button" onclick="buttonClick('5')" value="5"></div>
+<div style="position: absolute;left:950px;top:225px"><input style="width:100px;height:50px;background-color:#9e6b1e;color:#fa9d11;font-size:150%" type="button" onclick="buttonClick('6')" value="6"></div>
+<div style="position: absolute;left:541px;top:300px"><input style="width:100px;height:50px;background-color:#9e6b1e;color:#fa9d11;font-size:150%" type="button" onclick="buttonClick('1')" value="1"></div>
+<div style="position: absolute;left:741px;top:300px"><input style="width:100px;height:50px;background-color:#9e6b1e;color:#fa9d11;font-size:150%" type="button" onclick="buttonClick('2')" value="2"></div>
+<div style="position: absolute;left:950px;top:300px"><input style="width:100px;height:50px;background-color:#9e6b1e;color:#fa9d11;font-size:150%" type="button" onclick="buttonClick('3')" value="3"></div>
+<div style="position: absolute;left:1100px;top:75px"><input style="width:75px;height:125px;background-color:#9e6b1e;color:#fa9d11;font-size:150%" type="button" onclick="buttonClick('+')" value="+"></div>
+<div style="position: absolute;left:1100px;top:225px"><input style="width:75px;height:125px;background-color:#9e6b1e;color:#fa9d11;font-size:150%" type="button" onclick="buttonClick('-')" value="-"></div>
+<div style="position: absolute;left:1100px;top:375px"><input style="width:75px;height:50px;background-color:#9e6b1e;color:#fa9d11;font-size:150%" type="button" onclick="buttonClick('.')" value="."></div>
+<div style="position: absolute;left:840px;top:375px"><input style="width:210px;height:50px;background-color:#9e6b1e;color:#fa9d11;font-size:150%" type="button" onclick="buttonClick('0')" value="0"></div>
+<div style="position: absolute;left:541px;top:375px"><input style="width:210px;height:50px;background-color:#9e6b1e;color:#fa9d11;font-size:150%" type="button" onclick="buttonClick('=')" value="="></div>
+<div style="position: absolute;left:450px;top:75px"><input style="width:75px;height:125px;background-color:#9e6b1e;color:#fa9d11;font-size:150%" type="button" onclick="buttonClick('**')" value="**"></div>
+<div style="position: absolute;left:450px;top:225px"><input style="width:75px;height:125px;background-color:#9e6b1e;color:#fa9d11;font-size:150%" type="button" onclick="buttonClick('√')" value="√"></div>
+
+</body>
+</html>
